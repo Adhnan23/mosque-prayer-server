@@ -3,6 +3,7 @@ import PrayerTimeServices from "./prayerTimes.service";
 import RamadanServices from "./ramadan.service";
 import SettingsService from "./settings.service";
 import NoticeSerivces from "./notice.service";
+import LocalizationServices from "./localization.service";
 
 export {
   IkamahDelayServices,
@@ -10,4 +11,5 @@ export {
   RamadanServices,
   SettingsService,
   NoticeSerivces,
+  LocalizationServices,
 };

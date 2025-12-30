@@ -4,3 +4,4 @@ export * from "./ikamahDelay.table";
 export * from "./notice.table";
 export * from "./ramadan.table";
 export * from "./settings.table";
+export * from "./localization.table";

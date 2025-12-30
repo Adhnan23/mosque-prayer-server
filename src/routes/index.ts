@@ -4,12 +4,14 @@ import settingsRoute from "./settings.routes";
 import ramadanRoute from "./ramadan.routes";
 import prayerTimeRoute from "./prayerTime.route";
 import noticeRoute from "./notice.route";
+import localizationRoute from "./localization.route";
 
 const api = new Elysia({ prefix: "/api" })
   .use(ikamahRoute)
   .use(settingsRoute)
   .use(ramadanRoute)
   .use(prayerTimeRoute)
-  .use(noticeRoute);
+  .use(noticeRoute)
+  .use(localizationRoute);
 
 export default api;

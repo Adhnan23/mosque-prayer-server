@@ -36,6 +36,13 @@
       "when": 1766904954395,
       "tag": "0004_left_wendell_rand",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1767095578609,
+      "tag": "0005_goofy_thanos",
+      "breakpoints": true
     }
   ]
 }
