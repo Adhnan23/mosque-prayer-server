@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1766846404687,
+      "tag": "0000_high_dragon_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1766848802598,
+      "tag": "0001_chubby_colonel_america",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1766901635127,
+      "tag": "0002_orange_emma_frost",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1766904802948,
+      "tag": "0003_black_madame_hydra",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1766904954395,
+      "tag": "0004_left_wendell_rand",
+      "breakpoints": true
+    }
+  ]
+}

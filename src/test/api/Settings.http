@@ -1,0 +1,84 @@
+# ==============================
+# Base URL
+# ==============================
+@BASE_URL = http://localhost:3000
+
+### 
+# GET /api/settings - Get all settings (Success)
+GET {{BASE_URL}}/api/settings
+Accept: application/json
+
+### 
+# GET /api/settings/:name - Get "time-format" (Success)
+GET {{BASE_URL}}/api/settings/time-format
+Accept: application/json
+
+### 
+# GET /api/settings/:name - Get "is-ramadan" (Success)
+GET {{BASE_URL}}/api/settings/is-ramadan
+Accept: application/json
+
+### 
+# GET /api/settings/:name - Failure: non-existing setting
+GET {{BASE_URL}}/api/settings/non-existent
+Accept: application/json
+
+### 
+# PUT /api/settings - Success: update "time-format" to "12h"
+PUT {{BASE_URL}}/api/settings
+Content-Type: application/json
+
+{
+  "name": "time-format",
+  "value": "12h"
+}
+
+### 
+# PUT /api/settings - Success: update "is-ramadan" to "false"
+PUT {{BASE_URL}}/api/settings
+Content-Type: application/json
+
+{
+  "name": "is-ramadan",
+  "value": "false"
+}
+
+### 
+# PUT /api/settings - Failure: non-existing setting
+PUT {{BASE_URL}}/api/settings
+Content-Type: application/json
+
+{
+  "name": "non-existent",
+  "value": "123"
+}
+
+### 
+# PUT /api/settings - Failure: invalid name (too short)
+PUT {{BASE_URL}}/api/settings
+Content-Type: application/json
+
+{
+  "name": "a",
+  "value": "24h"
+}
+
+### 
+# PUT /api/settings - Failure: empty value
+PUT {{BASE_URL}}/api/settings
+Content-Type: application/json
+
+{
+  "name": "time-format",
+  "value": ""
+}
+
+### 
+# GET /api/settings/:name - Verify update "time-format"
+GET {{BASE_URL}}/api/settings/time-format
+Accept: application/json
+
+### 
+# GET /api/settings/:name - Verify update "is-ramadan"
+GET {{BASE_URL}}/api/settings/is-ramadan
+Accept: application/json
