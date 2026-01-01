@@ -84,7 +84,7 @@ GET {{BASE_URL}}/api/prayer-time/today?format=24h
 Accept: application/json
 
 ### GET /api/prayer-time/today (12h)
-GET {{BASE_URL}}/api/prayer-time/today?format=12h
+GET {{BASE_URL}}/api/prayer-time/today?format=12h&lang=si
 Accept: application/json
 
 ### GET /api/prayer-time/today (invalid format → fail)

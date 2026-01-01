@@ -53,4 +53,5 @@ export const collectiveTimeToDbSchema = z.record(z.string(), timeToDbSchema);
 export const day = z.coerce.number().int().min(1).max(31);
 export const month = z.coerce.number().int().min(1).max(12);
 export const limit = z.coerce.number().int().positive().optional();
+export const lang = z.string().min(2).max(4).default("en");
 export const paramId = z.coerce.number().int().positive();

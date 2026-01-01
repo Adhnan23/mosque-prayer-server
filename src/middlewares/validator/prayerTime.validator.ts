@@ -1,6 +1,7 @@
 import z from "zod";
 import { PrayerTime } from "../../db/schemas";
 import { limit, day, month, format } from "../../utils/schemas";
+import { lang } from "../../utils/schemas bak";
 
 const PrayerTimeValidator = {
   getAll: {
@@ -130,6 +131,7 @@ const PrayerTimeValidator = {
   today: {
     query: z.object({
       format: format,
+      lang: lang,
     }),
   },
   update: {

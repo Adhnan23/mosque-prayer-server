@@ -69,5 +69,5 @@ Accept: application/json
 
 ### 
 # GET /api/ikamah/time - Check calculation after update
-GET {{BASE_URL}}/api/ikamah/time?format=24h
+GET {{BASE_URL}}/api/ikamah/time?format=24h&lang=en
 Accept: application/json

@@ -16,7 +16,7 @@ const prayerTimeRoute = new Elysia({ prefix: "/prayer-time" })
     PrayerTimeController.getInRange,
     PrayerTimeValidator.getInRange
   )
-  .get("/today", PrayerTimeController.getToday)
+  .get("/today", PrayerTimeController.getToday, PrayerTimeValidator.today)
   .put("/:month/:day", PrayerTimeController.update, PrayerTimeValidator.update)
   .put(
     "/range/:startMonth/:startDay/:endMonth/:endDay",

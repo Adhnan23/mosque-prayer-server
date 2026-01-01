@@ -55,6 +55,34 @@ const transformTimesDeep = (value: unknown, format: "12h" | "24h"): unknown => {
   return value;
 };
 
+type Translations = Record<string, string>;
+
+export const transformTimesAndTranslate = (
+  value: unknown,
+  format: "12h" | "24h" = "24h",
+  translations: Translations = {}
+): unknown => {
+  if (Array.isArray(value)) {
+    return value.map((v) =>
+      transformTimesAndTranslate(v, format, translations)
+    );
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([k, v]) => {
+        const newKey = translations[k] || k; // translate key if exists
+        // Reuse transformTimesDeep for the value
+        const newValue = transformTimesDeep(v, format);
+        return [newKey, newValue];
+      })
+    );
+  }
+
+  // For primitive values that are not objects/arrays, just run transformTimesDeep
+  return transformTimesDeep(value, format);
+};
+
 /* ──────────────────────────────────────────────
    Collective formatters (shape-agnostic)
 ────────────────────────────────────────────── */

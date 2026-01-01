@@ -1,8 +1,11 @@
 import { NotFoundError } from "elysia";
-import { PrayerTimeServices } from "../db/services";
+import { LocalizationServices, PrayerTimeServices } from "../db/services";
 import respond from "../utils/respond";
 import { TPrayerTimeUpdate } from "../db/schemas";
-import { collectiveTimeFormatter } from "../utils/schemas";
+import {
+  collectiveTimeFormatter,
+  transformTimesAndTranslate,
+} from "../utils/schemas";
 import { isFriday } from "../utils/time";
 
 const PrayerTimeController = {
@@ -73,9 +76,9 @@ const PrayerTimeController = {
     );
   },
   getToday: async ({
-    query: { format },
+    query: { format, lang },
   }: {
-    query: { format?: "12h" | "24h" };
+    query: { format: "12h" | "24h"; lang: string };
   }) => {
     const today = new Date();
     const friday = isFriday(today);
@@ -85,18 +88,29 @@ const PrayerTimeController = {
     );
     if (!data) throw new NotFoundError("Prayer time not found for today");
 
+    const translation = await LocalizationServices.getTranslations(
+      lang,
+      "time_name"
+    );
+    if (!translation || translation.length === 0)
+      return respond(false, "Invalid Language Code");
+
+    const translationMap = Object.fromEntries(
+      translation.map((t) => [t.key, t.value])
+    );
+
     if (friday && "dhuhr" in data) {
       const { dhuhr, ...rest } = data as any;
       data = {
         ...rest,
-        kutbah: dhuhr,
+        jummah: dhuhr,
       };
     }
 
     return respond(
       true,
       "Today's prayer time retrieved successfully",
-      collectiveTimeFormatter(format).parse(data)
+      transformTimesAndTranslate(data, format, translationMap)
     );
   },
 

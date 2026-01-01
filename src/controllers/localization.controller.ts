@@ -1,4 +1,3 @@
-// src/controllers/localization.controller.ts
 import { NotFoundError } from "elysia";
 import { LocalizationServices } from "../db/services";
 import respond from "../utils/respond";

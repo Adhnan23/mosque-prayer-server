@@ -1,9 +1,13 @@
 import { NotFoundError } from "elysia";
 import { TIkamahDelayUpdate } from "../db/schemas";
-import { IkamahDelayServices, PrayerTimeServices } from "../db/services";
+import {
+  IkamahDelayServices,
+  LocalizationServices,
+  PrayerTimeServices,
+} from "../db/services";
 import respond from "../utils/respond";
 import { calculateTime, isFriday } from "../utils/time";
-import { collectiveTimeFormatter } from "../utils/schemas";
+import { transformTimesAndTranslate } from "../utils/schemas";
 
 const IkamahDelayController = {
   get: async () => {
@@ -11,9 +15,9 @@ const IkamahDelayController = {
     return respond(true, "Ikamah Delay fetched successfully", data);
   },
   getTime: async ({
-    query: { format },
+    query: { format, lang },
   }: {
-    query: { format: "12h" | "24h" };
+    query: { format: "12h" | "24h"; lang: string };
   }) => {
     const today = new Date();
     const prayer = await PrayerTimeServices.get(
@@ -25,6 +29,17 @@ const IkamahDelayController = {
 
     const delay = await IkamahDelayServices.get();
     if (!delay) throw new NotFoundError("Ikamah Delay not found");
+
+    const translation = await LocalizationServices.getTranslations(
+      lang,
+      "time_name"
+    );
+    if (!translation || translation.length === 0)
+      return respond(false, "Invalid Language Code");
+
+    const translationMap = Object.fromEntries(
+      translation.map((t) => [t.key, t.value])
+    );
 
     const friday = isFriday(today);
 
@@ -41,20 +56,28 @@ const IkamahDelayController = {
       true,
       "Ikamah times calculated successfully",
       friday
-        ? collectiveTimeFormatter(format).parse({
-            fajr,
-            kuthbah: dhuhrOrKutbah,
-            asr,
-            maghrib,
-            isha,
-          })
-        : collectiveTimeFormatter(format).parse({
-            fajr,
-            dhuhr: dhuhrOrKutbah,
-            asr,
-            maghrib,
-            isha,
-          })
+        ? transformTimesAndTranslate(
+            {
+              fajr,
+              kuthbah: dhuhrOrKutbah,
+              asr,
+              maghrib,
+              isha,
+            },
+            format,
+            translationMap
+          )
+        : transformTimesAndTranslate(
+            {
+              fajr,
+              dhuhr: dhuhrOrKutbah,
+              asr,
+              maghrib,
+              isha,
+            },
+            format,
+            translationMap
+          )
     );
   },
   update: async ({ body }: { body: TIkamahDelayUpdate }) => {

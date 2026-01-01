@@ -1,6 +1,7 @@
 import z from "zod";
 import { IkamahDelay } from "../../db/schemas";
 import { format } from "../../utils/schemas";
+import { lang } from "../../utils/schemas bak";
 
 const IkamahDelayValidator = {
   get: {
@@ -23,7 +24,12 @@ const IkamahDelayValidator = {
     // },
   },
   getTime: {
-    query: z.object({ format }).strict(),
+    query: z
+      .object({
+        format: format,
+        lang: lang,
+      })
+      .strict(),
   },
   update: {
     body: IkamahDelay.schema.update,

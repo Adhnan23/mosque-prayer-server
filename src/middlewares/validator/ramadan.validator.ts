@@ -1,11 +1,13 @@
 import z from "zod";
 import { Ramadan } from "../../db/schemas";
 import { format } from "../../utils/schemas";
+import { lang } from "../../utils/schemas bak";
 
 const RamadanValidator = {
   get: {
     query: z.object({
       format: format,
+      lang: lang,
     }),
     // detail: {
     //   summary: "Get Ramadan Times",
