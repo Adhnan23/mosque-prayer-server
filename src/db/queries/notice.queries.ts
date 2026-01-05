@@ -3,7 +3,7 @@ import { Notice, TNoticeInsert, TNoticeUpdate } from "@schemas";
 import { eq } from "drizzle-orm";
 
 const NoticeServices = {
-  get: async (isActive: boolean | undefined = undefined) => {
+  get: async (isActive?: boolean) => {
     const results =
       isActive === undefined
         ? await db.select().from(Notice.table)

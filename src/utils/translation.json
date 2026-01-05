@@ -1,0 +1,812 @@
+[
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "mosque_name",
+    "value": "Mosque Name"
+  },
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "language_code",
+    "value": "Default Language"
+  },
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "time_format",
+    "value": "Time Format"
+  },
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "primary_color",
+    "value": "Theme Color"
+  },
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "secondary_color",
+    "value": "Text Color"
+  },
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "accent_color",
+    "value": "Highlight Color"
+  },
+  {
+    "language_code": "en",
+    "category": "fields",
+    "key": "is_ramadan",
+    "value": "Enable Ramadan Mode"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "mosque_name",
+    "value": "பள்ளிவாசல் பெயர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "language_code",
+    "value": "மொழி"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "time_format",
+    "value": "நேர வடிவம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "primary_color",
+    "value": "தீம் நிறம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "secondary_color",
+    "value": "எழுத்து நிறம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "accent_color",
+    "value": "சிறப்பு நிறம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "fields",
+    "key": "is_ramadan",
+    "value": "ரமளான் முறை"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "mosque_name",
+    "value": "මස්ජිදයේ නම"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "language_code",
+    "value": "භාෂාව"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "time_format",
+    "value": "වේලාව ආකෘතිය"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "primary_color",
+    "value": "තේමා වර්ණය"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "secondary_color",
+    "value": "අකුරු වර්ණය"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "accent_color",
+    "value": "විශේෂ වර්ණය"
+  },
+  {
+    "language_code": "si",
+    "category": "fields",
+    "key": "is_ramadan",
+    "value": "රමළාන් ප්‍රකාරය"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "dashboard",
+    "value": "Dashboard"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "settings",
+    "value": "Settings"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "prayer_times",
+    "value": "Prayer Times"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "notices",
+    "value": "Notices"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "save",
+    "value": "Save"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "cancel",
+    "value": "Cancel"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "edit",
+    "value": "Edit"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "delete",
+    "value": "Delete"
+  },
+  {
+    "language_code": "en",
+    "category": "admin",
+    "key": "logout",
+    "value": "Logout"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "dashboard",
+    "value": "முகப்பு"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "settings",
+    "value": "அமைப்புகள்"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "prayer_times",
+    "value": "தொழுகை நேரங்கள்"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "notices",
+    "value": "அறிவிப்புகள்"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "save",
+    "value": "சேமி"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "cancel",
+    "value": "ரத்து"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "edit",
+    "value": "திருத்து"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "delete",
+    "value": "நீக்கு"
+  },
+  {
+    "language_code": "ta",
+    "category": "admin",
+    "key": "logout",
+    "value": "வெளியேறு"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "dashboard",
+    "value": "මුල් පිටුව"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "settings",
+    "value": "සැකසුම්"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "prayer_times",
+    "value": "සලාත වේලාවන්"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "notices",
+    "value": "දැනුම්දීම්"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "save",
+    "value": "සුරකින්න"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "cancel",
+    "value": "අවලංගු කරන්න"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "edit",
+    "value": "සංස්කරණය"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "delete",
+    "value": "මකන්න"
+  },
+  {
+    "language_code": "si",
+    "category": "admin",
+    "key": "logout",
+    "value": "ඉවත් වන්න"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "fajr",
+    "value": "Fajr"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "sunrise",
+    "value": "Sunrise"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "dhuhr",
+    "value": "Dhuhr"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "asr",
+    "value": "Asr"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "maghrib",
+    "value": "Maghrib"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "isha",
+    "value": "Isha"
+  },
+  {
+    "language_code": "en",
+    "category": "prayer_names",
+    "key": "jummah",
+    "value": "Jummah"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "fajr",
+    "value": "ஃபஜ்ர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "sunrise",
+    "value": "சூரிய உதயம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "dhuhr",
+    "value": "ளுஹர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "asr",
+    "value": "அஸ்ர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "maghrib",
+    "value": "மக்ரிப்"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "isha",
+    "value": "இஷா"
+  },
+  {
+    "language_code": "ta",
+    "category": "prayer_names",
+    "key": "jummah",
+    "value": "ஜும்ஆ"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "fajr",
+    "value": "ෆජ්ර්"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "sunrise",
+    "value": "ඉර උදාව"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "dhuhr",
+    "value": "ලුහුර්"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "asr",
+    "value": "අස්ර්"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "maghrib",
+    "value": "මග්රිබ්"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "isha",
+    "value": "ඉෂා"
+  },
+  {
+    "language_code": "si",
+    "category": "prayer_names",
+    "key": "jummah",
+    "value": "ජුම්ආ"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "next_prayer",
+    "value": "Next Prayer"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "iqamah_in",
+    "value": "Iqamah in"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "iqamah",
+    "value": "Iqamah"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "begins",
+    "value": "Begins"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "preparation",
+    "value": "Preparation"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "now",
+    "value": "Now"
+  },
+  {
+    "language_code": "en",
+    "category": "ui",
+    "key": "minutes",
+    "value": "Minutes"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "next_prayer",
+    "value": "அடுத்த தொழுகை"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "iqamah_in",
+    "value": "இகாமத்"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "iqamah",
+    "value": "இகாமத்"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "begins",
+    "value": "ஆரம்பம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "preparation",
+    "value": "தயார்படுத்தல்"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "now",
+    "value": "இப்போது"
+  },
+  {
+    "language_code": "ta",
+    "category": "ui",
+    "key": "minutes",
+    "value": "நிமிடங்கள்"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "next_prayer",
+    "value": "ඊළඟ සලාතය"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "iqamah_in",
+    "value": "ඉකාමත් සඳහා"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "iqamah",
+    "value": "ඉකාමත්"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "begins",
+    "value": "ආරම්භය"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "preparation",
+    "value": "සූදානම් වීම"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "now",
+    "value": "දැන්"
+  },
+  {
+    "language_code": "si",
+    "category": "ui",
+    "key": "minutes",
+    "value": "මිනිත්තු"
+  },
+  {
+    "language_code": "en",
+    "category": "ramadan",
+    "key": "suhur_end",
+    "value": "Suhur Ends"
+  },
+  {
+    "language_code": "en",
+    "category": "ramadan",
+    "key": "iftar",
+    "value": "Iftar"
+  },
+  {
+    "language_code": "en",
+    "category": "ramadan",
+    "key": "taraweeh",
+    "value": "Taraweeh"
+  },
+  {
+    "language_code": "ta",
+    "category": "ramadan",
+    "key": "suhur_end",
+    "value": "ஸஹர் முடிவு"
+  },
+  {
+    "language_code": "ta",
+    "category": "ramadan",
+    "key": "iftar",
+    "value": "இப்தார்"
+  },
+  {
+    "language_code": "ta",
+    "category": "ramadan",
+    "key": "taraweeh",
+    "value": "தராவீஹ்"
+  },
+  {
+    "language_code": "si",
+    "category": "ramadan",
+    "key": "suhur_end",
+    "value": "සහර් අවසානය"
+  },
+  {
+    "language_code": "si",
+    "category": "ramadan",
+    "key": "iftar",
+    "value": "ඉෆ්තාර්"
+  },
+  {
+    "language_code": "si",
+    "category": "ramadan",
+    "key": "taraweeh",
+    "value": "තරාවිහ්"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "1",
+    "value": "Muharram"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "2",
+    "value": "Safar"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "3",
+    "value": "Rabi al-Awwal"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "4",
+    "value": "Rabi al-Thani"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "5",
+    "value": "Jumada al-Awwal"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "6",
+    "value": "Jumada al-Thani"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "7",
+    "value": "Rajab"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "8",
+    "value": "Shaban"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "9",
+    "value": "Ramadan"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "10",
+    "value": "Shawwal"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "11",
+    "value": "Dhul Qadah"
+  },
+  {
+    "language_code": "en",
+    "category": "hijri",
+    "key": "12",
+    "value": "Dhul Hijjah"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "1",
+    "value": "முஹர்ரம்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "2",
+    "value": "ஸஃபர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "3",
+    "value": "ரபிஉல் அவ்வல்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "4",
+    "value": "ரபிஉல் ஆகிர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "5",
+    "value": "ஜமாதுல் அவ்வல்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "6",
+    "value": "ஜமாதுல் ஆகிர்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "7",
+    "value": "ரஜப்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "8",
+    "value": "ஷஃபான்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "9",
+    "value": "ரமளான்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "10",
+    "value": "ஷவ்வால்"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "11",
+    "value": "துல் கஃதா"
+  },
+  {
+    "language_code": "ta",
+    "category": "hijri",
+    "key": "12",
+    "value": "துல் ஹஜ்"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "1",
+    "value": "මුහර්රම්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "2",
+    "value": "සෆර්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "3",
+    "value": "රබිඋල් අව්වල්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "4",
+    "value": "රබිඋල් ආකිර"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "5",
+    "value": "ජමාදිඋල් අව්වල්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "6",
+    "value": "ජමාදිඋල් ආකිර"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "7",
+    "value": "රජබ්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "8",
+    "value": "ෂඅබාන්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "9",
+    "value": "රමළාන්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "10",
+    "value": "ෂව්වාල්"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "11",
+    "value": "දුල් කඅදා"
+  },
+  {
+    "language_code": "si",
+    "category": "hijri",
+    "key": "12",
+    "value": "දුල් හජ්"
+  }
+]
