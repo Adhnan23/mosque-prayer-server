@@ -34,3 +34,27 @@ export const formatTime = (time: string, format: 12 | 24 = 24): string => {
     "0"
   )} ${period}`;
 };
+
+export type TFormat = 12 | 24;
+
+type AnyTime = Record<string, any> | any[] | string;
+
+export const formatTimeRecursive = (
+  data: AnyTime,
+  format: 12 | 24 = 24
+): AnyTime => {
+  if (typeof data === "string") {
+    return /^\d{2}:\d{2}$/.test(data) ? formatTime(data, format) : data;
+  }
+  if (Array.isArray(data)) {
+    return data.map((item) => formatTimeRecursive(item, format));
+  }
+  if (typeof data === "object" && data !== null) {
+    const formatted: Record<string, any> = {};
+    for (const key in data) {
+      formatted[key] = formatTimeRecursive(data[key], format);
+    }
+    return formatted;
+  }
+  return data;
+};
