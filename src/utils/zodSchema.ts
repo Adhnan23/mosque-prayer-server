@@ -1,0 +1,17 @@
+import z from "zod";
+
+export const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+export const timeField = z.string().regex(timeRegex, "Invalid time format (HH:mm)");
+
+export const delayValidation = z.number().int().min(0).max(90);
+
+export const hexRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+export const colorField = z.string().regex(hexRegex, "Invalid Hex Color (e.g. #ffffff)");
+
+export const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+export const dateField = z.string().regex(dateRegex, "Format must be YYYY-MM-DD")
+
+export const limit = z.union([z.number(), z.undefined()])
+export type TLimit = z.infer<typeof limit>

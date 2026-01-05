@@ -1,24 +1,36 @@
-import { timeFromDbSchema, timeToDbSchema } from "./schemas";
-
-const isFriday = (date: Date) => date.getDay() === 5;
-
-const addMinutesToTime = (
-  time: [number, number],
-  delay: number
-): [number, number] => {
-  let [hour, minute] = time;
-  minute += delay;
-  if (minute >= 60) {
-    hour += Math.floor(minute / 60);
-    minute = minute % 60;
-  }
-  if (hour >= 24) hour = hour % 24;
-  return [hour, minute];
+export const timeToMinutes = (time: string): number => {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
 };
 
-const calculateTime = (time: string, delay: number) =>
-  timeToDbSchema.parse(
-    addMinutesToTime(timeFromDbSchema.parse(time) as [number, number], delay)
-  );
+export const minutesToTime = (totalMinutes: number): string => {
+  const minutesInDay = 24 * 60;
+  const normalized =
+    ((totalMinutes % minutesInDay) + minutesInDay) % minutesInDay;
 
-export { isFriday, addMinutesToTime, calculateTime };
+  const hours = Math.floor(normalized / 60);
+  const minutes = normalized % 60;
+
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+    2,
+    "0"
+  )}`;
+};
+
+export const addDelayToTime = (time: string, delay: number): string => {
+  return minutesToTime(timeToMinutes(time) + delay);
+};
+
+export const formatTime = (time: string, format: 12 | 24 = 24): string => {
+  if (format === 24) return time;
+
+  const [hours, minutes] = time.split(":").map(Number);
+
+  const period = hours >= 12 ? "PM" : "AM";
+  const hour12 = hours % 12 || 12;
+
+  return `${String(hour12).padStart(2, "0")}:${String(minutes).padStart(
+    2,
+    "0"
+  )} ${period}`;
+};

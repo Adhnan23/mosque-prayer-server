@@ -19,4 +19,5 @@ if (!parsedEnv.success) {
   throw new Error("Invalid environment configuration");
 }
 
-export const ENV = parsedEnv.data;
+const ENV = parsedEnv.data;
+export default ENV;

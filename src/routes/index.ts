@@ -1,17 +1,14 @@
-import { Elysia } from "elysia";
-import ikamahRoute from "./ikamahDelay.routes";
-import settingsRoute from "./settings.routes";
-import ramadanRoute from "./ramadan.routes";
-import prayerTimeRoute from "./prayerTime.route";
-import noticeRoute from "./notice.route";
-import localizationRoute from "./localization.route";
+import db from "@db";
+import { respond } from "@utils";
+import Elysia from "elysia";
 
-const api = new Elysia({ prefix: "/api" })
-  .use(ikamahRoute)
-  .use(settingsRoute)
-  .use(ramadanRoute)
-  .use(prayerTimeRoute)
-  .use(noticeRoute)
-  .use(localizationRoute);
+const ApiRoute = new Elysia({ prefix: "/api" }).get("/health", async () => {
+    await db.run("SELECT 1");
 
-export default api;
+    return respond(true, "Service is healthy", {
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString(),
+    })
+});
+
+export default ApiRoute;

@@ -1,5 +1,8 @@
 import { drizzle } from "drizzle-orm/libsql";
-import { ENV } from "../utils/env";
+import { ENV } from "@utils";
+import { createClient } from "@libsql/client";
 
-const db = drizzle(ENV.DB_FILE_NAME);
+const client = createClient({ url: ENV.DB_FILE_NAME })
+const db = drizzle({ client, logger: ENV.ENVIRONMENT === 'development' });
+
 export default db;

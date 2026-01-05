@@ -1,33 +1,40 @@
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
+import { sqliteTable, integer, text, check } from "drizzle-orm/sqlite-core";
 import { createSelectSchema, createUpdateSchema } from "drizzle-zod";
-import { z } from "zod";
-import { timeDbSchema } from "../../utils/schemas";
+import z from "zod";
+import { timeField } from "@utils";
 
-const ramadanTable = sqliteTable("ramadan", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  suhur: text("suhur").notNull(),
-  sunset: text("sunset").notNull(),
-  taraweeh: text("taraweeh").notNull(),
-});
+export const ramadanTable = sqliteTable(
+    "ramadan",
+    {
+        id: integer("id").primaryKey().default(1),
+        suhur_end: text("suhur_end").notNull().default("04:30"),
+        taraweeh: text("taraweeh").notNull().default("20:00"),
+    },
+    (table) => [
+        check("ramadan_single_row", sql`${table.id} = 1`),
+        check("suhur_format", sql`${table.suhur_end} LIKE '__:__'`),
+        check("taraweeh_format", sql`${table.taraweeh} LIKE '__:__'`),
+    ]
+);
+
+
 
 const Ramadan = {
-  table: ramadanTable,
-  schema: {
-    select: createSelectSchema(ramadanTable, {
-      id: z.number().int().positive(),
-    }).strict(),
-    update: createUpdateSchema(ramadanTable, {
-      suhur: timeDbSchema.optional(),
-      sunset: timeDbSchema.optional(),
-      taraweeh: timeDbSchema.optional(),
-    })
-      .omit({ id: true })
-      .partial()
-      .strict(),
-  },
+    table: ramadanTable,
+    schema: {
+        select: createSelectSchema(ramadanTable).strict(),
+        update: createUpdateSchema(ramadanTable, {
+            suhur_end: timeField,
+            taraweeh: timeField,
+        })
+            .omit({ id: true })
+            .partial()
+            .strict(),
+    }
 };
 
-type TRamadan = z.infer<typeof Ramadan.schema.select>;
-type TRamadanUpdate = z.infer<typeof Ramadan.schema.update>;
+export type TRamadan = z.infer<typeof Ramadan.schema.select>;
+export type TRamadanUpdate = z.infer<typeof Ramadan.schema.update>;
 
-export { Ramadan, ramadanTable, TRamadan, TRamadanUpdate };
+export { Ramadan };

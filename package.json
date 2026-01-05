@@ -1,22 +1,24 @@
 {
-  "name": "mosque-prayer-server-elysia",
+  "name": "server",
   "version": "1.0.50",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
+    "build": "bun build ./src/index.ts --compile --outfile my-backend",
+    "prod": "./my-backend",
+    "db:push": "bunx drizzle-kit push",
     "db:gen": "bunx drizzle-kit generate",
     "db:mig": "bunx drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "bunx drizzle-kit studio",
+    "db:seed": "bun ./src/utils/seed.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
-    "@elysiajs/html": "^1.4.0",
-    "@elysiajs/openapi": "^1.4.13",
     "@elysiajs/static": "^1.4.7",
     "@libsql/client": "^0.15.15",
     "drizzle-orm": "^0.45.1",
     "drizzle-zod": "^0.8.3",
     "elysia": "latest",
-    "zod": "^4.2.1"
+    "zod": "^4.3.4"
   },
   "devDependencies": {
     "bun-types": "latest",

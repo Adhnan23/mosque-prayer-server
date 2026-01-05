@@ -1,86 +1,81 @@
-// src/middleware/errorHandler.ts
-import { NotFoundError, InternalServerError } from "elysia";
-import { ZodError, z } from "zod";
-import { DrizzleQueryError, DrizzleError } from "drizzle-orm";
-import respond from "../utils/respond";
-import { ENV } from "../utils/env";
+import { InternalServerError, NotFoundError, ValidationError, type ErrorHandler } from "elysia";
+import { ENV, respond } from "@utils";
+import { DrizzleError, DrizzleQueryError } from "drizzle-orm";
 
-const errorHandler = ({ code, error, status }: any) => {
-  // -----------------------------
-  // 1) Zod validation errors
-  // -----------------------------
-  if (code === "VALIDATION") {
-    const simple = error.all.map((i: { path: string; message: string }) => ({
-      path: i.path,
-      message: i.message,
-    }));
-    return status(400, respond(false, "Validation Failed", null, simple));
-  }
+const errorHandler: ErrorHandler = ({ code, error, status, request }) => {
 
-  if (error instanceof ZodError) {
-    const prettyString = z.prettifyError(error);
-    const errorData =
-      ENV.ENVIRONMENT === "development"
-        ? { raw: error.issues, pretty: prettyString.split("\n") }
-        : { message: "Invalid input" };
+    if (code === "VALIDATION" && error instanceof ValidationError) {
+        const simpleErrors = error.all.map((err) => {
+            const path = "path" in err && err.path ? err.path : "(unknown)";
+            const message = "message" in err
+                ? err.message
+                : err.summary ?? "Invalid input";
+            return `${path}: ${message}`;
+        });
 
-    return status(400, respond(false, "Validation Failed", null, errorData));
-  }
+        if (ENV.ENVIRONMENT === "development") {
+            console.log("[ValidationError]", error);
+        }
 
-  // -----------------------------
-  // 2) Built-in HTTP errors
-  // -----------------------------
-  if (error instanceof NotFoundError) {
-    return status(404, respond(false, error.message || "Route not found"));
-  }
+        return status("Unprocessable Content", respond(false, "Validation Failed", null, simpleErrors));
+    }
 
-  if (error instanceof InternalServerError) {
-    return status(
-      500,
-      respond(false, error.message || "Internal server error")
-    );
-  }
+    else if (code === "NOT_FOUND" && error instanceof NotFoundError) {
+        const url = request?.url ? new URL(request.url).pathname : "(unknown)";
+        if (ENV.ENVIRONMENT === "development") {
+            console.log("[NotFoundError]", url);
+        }
+        return status("Not Found", respond(false, `${url} is not found`));
+    }
 
-  // -----------------------------
-  // 3) Drizzle / SQLite errors
-  // -----------------------------
-  if (error instanceof DrizzleQueryError || error instanceof DrizzleError) {
-    const cause = (error.cause as { message?: string; code?: number }) || {};
-    const sqliteMsg = cause.message || "";
+    else if (code === "INTERNAL_SERVER_ERROR" && error instanceof InternalServerError) {
+        if (ENV.ENVIRONMENT === "development") {
+            console.log("[InternalServerError]", error);
+        }
+        return status("Internal Server Error", respond(false, error.message || "Internal Server Error"));
+    }
+    else if (error instanceof DrizzleQueryError || error instanceof DrizzleError) {
+        const cause = (error.cause as { message?: string; code?: number }) || {};
+        const sqliteMsg = cause.message || "";
+        const isUnique = sqliteMsg.includes("UNIQUE constraint failed");
 
-    const isUnique = sqliteMsg.includes("UNIQUE constraint failed");
-    const httpStatus = isUnique ? 409 : 500;
+        if (ENV.ENVIRONMENT === "development") {
+            console.log("[DrizzleError]", {
+                name: error.name,
+                message: error.message,
+                code: cause.code,
+                detail: sqliteMsg
+            });
+        }
 
-    const errorData =
-      ENV.ENVIRONMENT === "development"
-        ? {
-            drizzleName: error.name,
-            message: error.message,
-            code: cause.code || null,
-            detail: sqliteMsg,
-          }
-        : null;
+        const errorData =
+            ENV.ENVIRONMENT === "development"
+                ? {
+                    drizzleName: error.name,
+                    message: error.message,
+                    code: cause.code ?? null,
+                    detail: sqliteMsg
+                }
+                : null;
 
-    const message =
-      ENV.ENVIRONMENT === "development"
-        ? "Database Error"
-        : "Internal Server Error";
+        const message =
+            ENV.ENVIRONMENT === "development" ? "Database Error" : "Internal Server Error";
 
-    return status(httpStatus, respond(false, message, null, errorData));
-  }
+        return status(isUnique ? "Conflict" : "Internal Server Error", respond(false, message, null, errorData));
+    }
+    else if (code === "UNKNOWN" || error instanceof Error) {
+        if (ENV.ENVIRONMENT === "development") {
+            console.log("[UnknownError]", error);
+        }
 
-  // -----------------------------
-  // 4) Fallback / unknown errors
-  // -----------------------------
-  const fallbackData =
-    ENV.ENVIRONMENT === "development"
-      ? { message: error?.message, stack: error?.stack }
-      : null;
+        const fallbackData =
+            ENV.ENVIRONMENT === "development"
+                ? { message: (error as any)?.message, stack: (error as any)?.stack }
+                : null;
 
-  return status(
-    500,
-    respond(false, "Internal Server Error", null, fallbackData)
-  );
-};
+        return status("Internal Server Error", respond(false, "Internal Server Error", null, fallbackData));
+    }
 
-export default errorHandler;
+}
+
+export default errorHandler

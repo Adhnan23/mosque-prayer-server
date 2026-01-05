@@ -1,19 +1,107 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "b8649bdf-e76d-48a5-bcfe-07365f26e92c",
-  "prevId": "953e62bc-d3ef-47a4-9230-d832e45df3da",
+  "id": "4ea75644-8c15-4582-a93b-105d567752b8",
+  "prevId": "80d31768-4ae2-4d98-be77-310fb0a1fdd8",
   "tables": {
-    "calendar_date": {
-      "name": "calendar_date",
+    "ikamah": {
+      "name": "ikamah",
       "columns": {
         "id": {
           "name": "id",
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false,
+          "default": 1
         },
+        "fajr": {
+          "name": "fajr",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 15
+        },
+        "dhuhr": {
+          "name": "dhuhr",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 15
+        },
+        "asr": {
+          "name": "asr",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 15
+        },
+        "maghrib": {
+          "name": "maghrib",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 5
+        },
+        "isha": {
+          "name": "isha",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 15
+        },
+        "jummah": {
+          "name": "jummah",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "single_row_check": {
+          "name": "single_row_check",
+          "value": "\"ikamah\".\"id\" = 1"
+        },
+        "fajr_range": {
+          "name": "fajr_range",
+          "value": "\"ikamah\".\"fajr\" BETWEEN 0 AND 90"
+        },
+        "dhuhr_range": {
+          "name": "dhuhr_range",
+          "value": "\"ikamah\".\"dhuhr\" BETWEEN 0 AND 90"
+        },
+        "asr_range": {
+          "name": "asr_range",
+          "value": "\"ikamah\".\"asr\" BETWEEN 0 AND 90"
+        },
+        "maghrib_range": {
+          "name": "maghrib_range",
+          "value": "\"ikamah\".\"maghrib\" BETWEEN 0 AND 90"
+        },
+        "isha_range": {
+          "name": "isha_range",
+          "value": "\"ikamah\".\"isha\" BETWEEN 0 AND 90"
+        },
+        "jummah_range": {
+          "name": "jummah_range",
+          "value": "\"ikamah\".\"jummah\" BETWEEN 0 AND 90"
+        }
+      }
+    },
+    "prayer_times": {
+      "name": "prayer_times",
+      "columns": {
         "month": {
           "name": "month",
           "type": "integer",
@@ -23,98 +111,6 @@
         },
         "day": {
           "name": "day",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "calendar_date_unique": {
-          "name": "calendar_date_unique",
-          "columns": [
-            "month",
-            "day"
-          ],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "ikamah_delay": {
-      "name": "ikamah_delay",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "fajr": {
-          "name": "fajr",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "jummah": {
-          "name": "jummah",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "dhuhr": {
-          "name": "dhuhr",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "asr": {
-          "name": "asr",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "maghrib": {
-          "name": "maghrib",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "isha": {
-          "name": "isha",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "prayer_time": {
-      "name": "prayer_time",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "date_id": {
-          "name": "date_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -164,24 +160,76 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "prayer_time_date_id_calendar_date_id_fk": {
-          "name": "prayer_time_date_id_calendar_date_id_fk",
-          "tableFrom": "prayer_time",
-          "tableTo": "calendar_date",
-          "columnsFrom": [
-            "date_id"
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "prayer_times_month_day_pk": {
+          "columns": [
+            "month",
+            "day"
           ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "name": "prayer_times_month_day_pk"
         }
       },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "fajr_format": {
+          "name": "fajr_format",
+          "value": "\"prayer_times\".\"fajr\" LIKE '__:__'"
+        },
+        "sunrise_format": {
+          "name": "sunrise_format",
+          "value": "\"prayer_times\".\"sunrise\" LIKE '__:__'"
+        },
+        "dhuhr_format": {
+          "name": "dhuhr_format",
+          "value": "\"prayer_times\".\"dhuhr\" LIKE '__:__'"
+        },
+        "asr_format": {
+          "name": "asr_format",
+          "value": "\"prayer_times\".\"asr\" LIKE '__:__'"
+        },
+        "maghrib_format": {
+          "name": "maghrib_format",
+          "value": "\"prayer_times\".\"maghrib\" LIKE '__:__'"
+        },
+        "isha_format": {
+          "name": "isha_format",
+          "value": "\"prayer_times\".\"isha\" LIKE '__:__'"
+        }
+      }
+    },
+    "languages": {
+      "name": "languages",
+      "columns": {
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
-      "checkConstraints": {}
+      "checkConstraints": {
+        "code_length_check": {
+          "name": "code_length_check",
+          "value": "length(\"languages\".\"code\") >= 2 AND length(\"languages\".\"code\") <= 4"
+        },
+        "name_not_empty": {
+          "name": "name_not_empty",
+          "value": "length(\"languages\".\"name\") > 0"
+        }
+      }
     },
     "ramadan": {
       "name": "ramadan",
@@ -191,35 +239,44 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false,
+          "default": 1
         },
-        "suhur": {
-          "name": "suhur",
+        "suhur_end": {
+          "name": "suhur_end",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
-        },
-        "sunset": {
-          "name": "sunset",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "'04:30'"
         },
         "taraweeh": {
           "name": "taraweeh",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "'20:00'"
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
-      "checkConstraints": {}
+      "checkConstraints": {
+        "ramadan_single_row": {
+          "name": "ramadan_single_row",
+          "value": "\"ramadan\".\"id\" = 1"
+        },
+        "suhur_format": {
+          "name": "suhur_format",
+          "value": "\"ramadan\".\"suhur_end\" LIKE '__:__'"
+        },
+        "taraweeh_format": {
+          "name": "taraweeh_format",
+          "value": "\"ramadan\".\"taraweeh\" LIKE '__:__'"
+        }
+      }
     },
     "settings": {
       "name": "settings",
@@ -229,82 +286,130 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false,
+          "default": 1
         },
-        "name": {
-          "name": "name",
+        "mosque_name": {
+          "name": "mosque_name",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "'Masjidul Falah'"
         },
-        "value": {
-          "name": "value",
+        "language_code": {
+          "name": "language_code",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "settings_name_unique": {
-          "name": "settings_name_unique",
-          "columns": [
-            "name"
-          ],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "notice": {
-      "name": "notice",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
+          "autoincrement": false,
+          "default": "'en'"
         },
-        "noticeContent": {
-          "name": "noticeContent",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "startDate": {
-          "name": "startDate",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "endDate": {
-          "name": "endDate",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "isActive": {
-          "name": "isActive",
+        "time_format": {
+          "name": "time_format",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": 0
+          "default": 24
+        },
+        "is_ramadan": {
+          "name": "is_ramadan",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "primary_color": {
+          "name": "primary_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'#000000'"
+        },
+        "secondary_color": {
+          "name": "secondary_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'#ffffff'"
+        },
+        "accent_color": {
+          "name": "accent_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'#007bff'"
+        },
+        "background_color": {
+          "name": "background_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'#f8f9fa'"
+        },
+        "foreground_color": {
+          "name": "foreground_color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'#212529'"
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "settings_language_code_languages_code_fk": {
+          "name": "settings_language_code_languages_code_fk",
+          "tableFrom": "settings",
+          "tableTo": "languages",
+          "columnsFrom": [
+            "language_code"
+          ],
+          "columnsTo": [
+            "code"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
-      "checkConstraints": {}
+      "checkConstraints": {
+        "settings_single_row": {
+          "name": "settings_single_row",
+          "value": "\"settings\".\"id\" = 1"
+        },
+        "mosque_name_length": {
+          "name": "mosque_name_length",
+          "value": "length(\"settings\".\"mosque_name\") > 0"
+        },
+        "primary_hex": {
+          "name": "primary_hex",
+          "value": "\"settings\".\"primary_color\" LIKE '#%'"
+        },
+        "secondary_hex": {
+          "name": "secondary_hex",
+          "value": "\"settings\".\"secondary_color\" LIKE '#%'"
+        },
+        "accent_hex": {
+          "name": "accent_hex",
+          "value": "\"settings\".\"accent_color\" LIKE '#%'"
+        },
+        "bg_hex": {
+          "name": "bg_hex",
+          "value": "\"settings\".\"background_color\" LIKE '#%'"
+        },
+        "fg_hex": {
+          "name": "fg_hex",
+          "value": "\"settings\".\"foreground_color\" LIKE '#%'"
+        }
+      }
     }
   },
   "views": {},
