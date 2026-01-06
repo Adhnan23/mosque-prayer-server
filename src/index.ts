@@ -4,14 +4,16 @@ import { Cors, errorHandler, Static } from "@middlewares";
 import ApiRoute from "@routes";
 
 const app = new Elysia()
+  .onError(errorHandler)
   .use(Cors)
   .use(Static)
   .use(ApiRoute)
-  .onError(errorHandler)
   .listen(ENV.PORT);
 
 console.log(
-  `🦊 Elysia is running in ${ENV.ENVIRONMENT} mode at http://${app.server?.hostname || "localhost"}:${app.server?.port}/`
+  `🦊 Elysia is running in ${ENV.ENVIRONMENT} mode at http://${
+    app.server?.hostname || "localhost"
+  }:${app.server?.port}/`
 );
 
 process.on("SIGINT", async () => {

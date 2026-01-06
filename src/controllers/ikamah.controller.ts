@@ -22,7 +22,7 @@ const IkamahController = {
   update: async ({ body }: { body: TIkamahUpdate }) => {
     const ikamah = await IkamahServices.update(body);
     if (!ikamah) throw new NotFoundError("Ikamah not found");
-    return respond(true, "Ikamah updated successfully", ikamah.lastInsertRowid);
+    return respond(true, "Ikamah updated successfully", ikamah);
   },
 };
 

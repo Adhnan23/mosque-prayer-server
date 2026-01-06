@@ -17,7 +17,7 @@ const LanguagesServices = {
     return row;
   },
   delete: async (code: string) =>
-    db.delete(Languages.table).where(eq(Languages.table.code, code)),
+    await db.delete(Languages.table).where(eq(Languages.table.code, code)),
 };
 
 export default LanguagesServices;

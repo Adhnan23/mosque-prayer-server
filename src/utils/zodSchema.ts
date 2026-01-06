@@ -4,7 +4,9 @@ export const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
 export const timeField = z
   .string()
   .regex(timeRegex, "Invalid time format (HH:mm)");
-export const timeFormat = z.union([z.literal(24), z.literal(12)]).default(24);
+export const timeFormat = z
+  .union([z.literal("24"), z.literal("12")], "format must be 12 or 24")
+  .default("24");
 
 export const delayValidation = z.number().int().min(0).max(90);
 
@@ -22,3 +24,5 @@ export const dateField = z
 
 export const limit = z.union([z.number(), z.undefined()]);
 export type TLimit = z.infer<typeof limit>;
+
+export const languageCode = z.string().min(2).max(4).toLowerCase();

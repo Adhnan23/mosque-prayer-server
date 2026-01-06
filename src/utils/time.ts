@@ -21,8 +21,11 @@ export const addDelayToTime = (time: string, delay: number): string => {
   return minutesToTime(timeToMinutes(time) + delay);
 };
 
-export const formatTime = (time: string, format: 12 | 24 = 24): string => {
-  if (format === 24) return time;
+export const formatTime = (
+  time: string,
+  format: "12" | "24" = "24"
+): string => {
+  if (format === "24") return time;
 
   const [hours, minutes] = time.split(":").map(Number);
 
@@ -35,13 +38,13 @@ export const formatTime = (time: string, format: 12 | 24 = 24): string => {
   )} ${period}`;
 };
 
-export type TFormat = 12 | 24;
+export type TFormat = "12" | "24";
 
 type AnyTime = Record<string, any> | any[] | string;
 
 export const formatTimeRecursive = (
   data: AnyTime,
-  format: 12 | 24 = 24
+  format: "12" | "24" = "24"
 ): AnyTime => {
   if (typeof data === "string") {
     return /^\d{2}:\d{2}$/.test(data) ? formatTime(data, format) : data;
