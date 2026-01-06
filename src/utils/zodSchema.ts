@@ -1,3 +1,4 @@
+import { TSettingsUpdate } from "@schemas";
 import z from "zod";
 
 export const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
@@ -26,3 +27,16 @@ export const limit = z.union([z.number(), z.undefined()]);
 export type TLimit = z.infer<typeof limit>;
 
 export const languageCode = z.string().min(2).max(4).toLowerCase();
+
+export const settingsColumn = z.enum([
+  "mosque_name",
+  "language_code",
+  "time_format",
+  "is_ramadan",
+  "primary_color",
+  "secondary_color",
+  "accent_color",
+  "background_color",
+  "foreground_color",
+]);
+export type SettingsColumn = z.infer<typeof settingsColumn>;

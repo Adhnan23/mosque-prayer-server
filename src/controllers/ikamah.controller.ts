@@ -2,7 +2,7 @@ import { IkamahServices } from "@queries";
 import { TIkamahUpdate } from "@schemas";
 import { respond } from "@utils";
 import { NotFoundError } from "elysia";
-import { formatTimeRecursive, TFormat } from "src/utils/time";
+import { formatTimeRecursive, TFormat } from "@utils";
 
 const IkamahController = {
   get: async () => {
