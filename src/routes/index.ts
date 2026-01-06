@@ -6,6 +6,8 @@ import LanguagesRoute from "./languages.routes";
 import RamadanRoute from "./ramadan.routes";
 import SettingsRoute from "./settings.routes";
 import PrayerTimeRoute from "./prayerTime.routes";
+import NoticeRoute from "./notice.routes";
+import TranslationsRoute from "./translations.routes";
 
 const ApiRoute = new Elysia({ prefix: "/api" })
   .use(IkamahRoute)
@@ -13,6 +15,8 @@ const ApiRoute = new Elysia({ prefix: "/api" })
   .use(RamadanRoute)
   .use(SettingsRoute)
   .use(PrayerTimeRoute)
+  .use(NoticeRoute)
+  .use(TranslationsRoute)
   .get("/health", async () => {
     await db.run("SELECT 1");
 

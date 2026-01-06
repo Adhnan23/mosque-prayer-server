@@ -1,7 +1,7 @@
 import { PrayerTimeServices } from "@queries";
 import { TPrayerTimeUpdate } from "@schemas";
 import { formatTimeRecursive, respond, TFormat, TLimit } from "@utils";
-import { NotFoundError } from "elysia";
+import { NotFoundError, status } from "elysia";
 
 const PrayerTimeController = {
   getAll: async ({
@@ -54,6 +54,10 @@ const PrayerTimeController = {
     params: { sm: number; sd: number; em: number; ed: number };
     query: { format: TFormat };
   }) => {
+    const startRange = sm * 100 + sd;
+    const endRange = em * 100 + ed;
+    if (startRange > endRange)
+      return status(400, respond(false, "Invalid date range"));
     const results = await PrayerTimeServices.getInRange([sm, sd], [em, ed]);
     if (!results) throw new NotFoundError("PrayerTime not found");
     return respond(
@@ -89,6 +93,10 @@ const PrayerTimeController = {
     params: { sm: number; sd: number; em: number; ed: number };
     body: TPrayerTimeUpdate;
   }) => {
+    const startRange = sm * 100 + sd;
+    const endRange = em * 100 + ed;
+    if (startRange > endRange)
+      return status(400, respond(false, "Invalid date range"));
     const results = await PrayerTimeServices.updateByRange(
       [sm, sd],
       [em, ed],

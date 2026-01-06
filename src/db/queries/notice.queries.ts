@@ -20,6 +20,13 @@ const NoticeServices = {
       .where(eq(Notice.table.id, id));
     return result;
   },
+  getByCode: async (code: string) => {
+    const results = await db
+      .select()
+      .from(Notice.table)
+      .where(eq(Notice.table.language_code, code));
+    return results;
+  },
   insert: async (data: TNoticeInsert) => {
     const [row] = await db.insert(Notice.table).values(data).returning();
     return row;
