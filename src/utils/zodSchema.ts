@@ -40,3 +40,6 @@ export const settingsColumn = z.enum([
   "foreground_color",
 ]);
 export type SettingsColumn = z.infer<typeof settingsColumn>;
+
+export const month = z.coerce.number().int().min(1).max(12);
+export const day = z.coerce.number().int().min(1).max(31);
