@@ -7,9 +7,11 @@ const NoticeValidator = {
     query: z
       .object({
         isActive: z
-          .enum(["true", "false"])
-          .optional()
-          .transform((v) => v === "true"),
+          .union([
+            z.literal("true").transform(() => true),
+            z.literal("false").transform(() => false),
+          ])
+          .optional(),
       })
       .strict(),
   },

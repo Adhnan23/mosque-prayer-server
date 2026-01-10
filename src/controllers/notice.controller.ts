@@ -5,10 +5,11 @@ import { InternalServerError, NotFoundError, status } from "elysia";
 
 const NoticeController = {
   get: async ({ query: { isActive } }: { query: { isActive?: boolean } }) => {
-    const notices =
-      isActive === undefined
-        ? await NoticeServices.get()
-        : await NoticeServices.get(isActive);
+    let notices;
+    if (isActive === undefined || isActive === null)
+      notices = await NoticeServices.get();
+    else notices = await NoticeServices.get(isActive);
+
     if (notices.length === 0) throw new NotFoundError("No notices found");
     return respond(true, "Notices fetched successfully", notices);
   },
