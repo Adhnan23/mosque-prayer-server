@@ -1,8 +1,6 @@
-import db from "@db";
 import { TranslationsServices } from "@queries";
-import { Translations, TTranslationInsert, TTranslationUpdate } from "@schemas";
+import { TTranslationInsert, TTranslationUpdate } from "@schemas";
 import { respond } from "@utils";
-import { and, eq } from "drizzle-orm";
 import { InternalServerError, NotFoundError } from "elysia";
 
 const TranslationsController = {
