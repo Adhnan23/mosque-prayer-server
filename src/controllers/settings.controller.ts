@@ -15,8 +15,7 @@ const SettingsController = {
     params: { column: SettingsColumn };
   }) => {
     const value = await SettingsServices.getByColumn(column);
-    if (value === undefined || value === null)
-      throw new NotFoundError("Value not found");
+    if (value === null) throw new NotFoundError("Value not found");
     return respond(true, "Value fetched successfully", value);
   },
   update: async ({ body }: { body: TSettingsUpdate }) => {

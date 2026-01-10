@@ -1,4 +1,5 @@
 import db from "@db";
+import { TranslationsServices } from "@queries";
 import { Translations, TTranslationInsert, TTranslationUpdate } from "@schemas";
 import { respond } from "@utils";
 import { and, eq } from "drizzle-orm";
@@ -6,16 +7,14 @@ import { InternalServerError, NotFoundError } from "elysia";
 
 const TranslationsController = {
   get: async () => {
-    const translations = await db.select().from(Translations.table);
-    if (!translations) throw new NotFoundError("No translations found");
+    const translations = await TranslationsServices.get();
+    if (translations.length === 0)
+      throw new NotFoundError("No translations found");
     return respond(true, "Translations fetched successfully", translations);
   },
   getByCode: async ({ params: { code } }: { params: { code: string } }) => {
-    const translations = await db
-      .select()
-      .from(Translations.table)
-      .where(eq(Translations.table.language_code, code));
-    if (!translations || translations.length === 0)
+    const translations = await TranslationsServices.getByCode(code);
+    if (translations.length === 0)
       throw new NotFoundError("No translations found");
     return respond(true, "Translations fetched successfully", translations);
   },
@@ -24,17 +23,12 @@ const TranslationsController = {
   }: {
     params: { code: string; category: string };
   }) => {
-    const translations = await db
-      .select()
-      .from(Translations.table)
-      .where(
-        and(
-          eq(Translations.table.language_code, code),
-          eq(Translations.table.category, category)
-        )
-      );
-    if (!translations || translations.length === 0)
-      throw new NotFoundError("No translation found");
+    const translations = await TranslationsServices.getByCategory(
+      code,
+      category
+    );
+    if (translations.length === 0)
+      throw new NotFoundError("No translations found");
     return respond(true, "Translations fetched successfully", translations);
   },
   getByKey: async ({
@@ -42,17 +36,9 @@ const TranslationsController = {
   }: {
     params: { code: string; key: string };
   }) => {
-    const [row] = await db
-      .select()
-      .from(Translations.table)
-      .where(
-        and(
-          eq(Translations.table.language_code, code),
-          eq(Translations.table.key, key)
-        )
-      );
-    if (!row || !row.value) throw new NotFoundError("No translation found");
-    return respond(true, "Translation fetched successfully", row.value);
+    const value = await TranslationsServices.getByKey(code, key);
+    if (value === undefined) throw new NotFoundError("No translation found");
+    return respond(true, "Translation fetched successfully", value);
   },
   insert: async ({
     params: { code, category, key },
@@ -61,7 +47,7 @@ const TranslationsController = {
     params: { code: string; category: string; key: string };
     body: TTranslationInsert;
   }) => {
-    const inserted = await db.insert(Translations.table).values({
+    const inserted = await TranslationsServices.insert({
       language_code: code,
       category,
       key,
@@ -76,19 +62,15 @@ const TranslationsController = {
     body: { value },
   }: {
     params: { code: string; category: string; key: string };
-    body: TTranslationUpdate;
+    body: { value: TTranslationUpdate };
   }) => {
-    const updated = await db
-      .update(Translations.table)
-      .set({ value })
-      .where(
-        and(
-          eq(Translations.table.language_code, code),
-          eq(Translations.table.category, category),
-          eq(Translations.table.key, key)
-        )
-      );
-    if (!updated) throw new InternalServerError("Failed to update translation");
+    const updated = await TranslationsServices.update(
+      code,
+      category,
+      key,
+      value
+    );
+    if (!updated) throw new NotFoundError("Translation not found");
     return respond(true, "Translation updated successfully", updated);
   },
   delete: async ({
@@ -96,16 +78,8 @@ const TranslationsController = {
   }: {
     params: { code: string; category: string; key: string };
   }) => {
-    const deleted = await db
-      .delete(Translations.table)
-      .where(
-        and(
-          eq(Translations.table.language_code, code),
-          eq(Translations.table.category, category),
-          eq(Translations.table.key, key)
-        )
-      );
-    if (!deleted) throw new InternalServerError("Failed to delete translation");
+    const deleted = await TranslationsServices.delete(code, category, key);
+    if (!deleted) throw new NotFoundError("Translation not found");
     return respond(true, "Translation deleted successfully", deleted);
   },
 };

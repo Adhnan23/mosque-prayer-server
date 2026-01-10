@@ -1,6 +1,6 @@
 import db from "@db";
 import { Ramadan, TRamadanUpdate } from "@schemas";
-import { sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 const RamadanServices = {
   get: async () => {
@@ -14,11 +14,13 @@ const RamadanServices = {
 
     return result;
   },
-  update: async (data: TRamadanUpdate) =>
-    await db
+  update: async (data: TRamadanUpdate) => {
+    const updatedRow = await db
       .update(Ramadan.table)
       .set(data)
-      .where(sql`${Ramadan.table.id} = 1`),
+      .where(eq(Ramadan.table.id, 1));
+    return updatedRow.rowsAffected > 0;
+  },
 };
 
 export default RamadanServices;

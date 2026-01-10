@@ -23,7 +23,7 @@ export const dateField = z
   .string()
   .regex(dateRegex, "Format must be YYYY-MM-DD");
 
-export const limit = z.union([z.number(), z.undefined()]);
+export const limit = z.union([z.coerce.number().min(1), z.undefined()]);
 export type TLimit = z.infer<typeof limit>;
 
 export const languageCode = z.string().min(2).max(4).toLowerCase();

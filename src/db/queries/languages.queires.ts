@@ -8,16 +8,22 @@ const LanguagesServices = {
     const [value] = await db
       .select({ name: Languages.table.name })
       .from(Languages.table)
-      .where(eq(Languages.table.code, code.toLocaleLowerCase()));
+      .where(eq(Languages.table.code, code.toLowerCase()));
 
     return value?.name;
   },
   insert: async (data: TLanguageInsert) => {
-    const [row] = await db.insert(Languages.table).values(data).returning();
-    return row;
+    const row = await db
+      .insert(Languages.table)
+      .values({ ...data, code: data.code.toLowerCase() });
+    return row.rowsAffected > 0;
   },
-  delete: async (code: string) =>
-    await db.delete(Languages.table).where(eq(Languages.table.code, code)),
+  delete: async (code: string) => {
+    const deletedRow = await db
+      .delete(Languages.table)
+      .where(eq(Languages.table.code, code.toLowerCase()));
+    return deletedRow.rowsAffected > 0;
+  },
 };
 
 export default LanguagesServices;

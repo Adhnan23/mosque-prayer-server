@@ -1,6 +1,6 @@
 import db from "@db";
 import { Ikamah, TIkamahUpdate } from "@schemas";
-import { sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { PrayerTimeServices } from "@queries";
 import { addDelayToTime } from "src/utils/time";
 
@@ -22,7 +22,10 @@ const IkamahServices = {
   },
   time: async () => {
     const ikamah = await IkamahServices.get();
+    if (!ikamah) return null;
+
     const [prayer] = await PrayerTimeServices.today();
+    if (!prayer) return null;
     return {
       fajr: addDelayToTime(prayer.fajr, ikamah.fajr),
       dhuhr: addDelayToTime(prayer.dhuhr, ikamah.dhuhr),
@@ -32,11 +35,13 @@ const IkamahServices = {
       jummah: addDelayToTime(prayer.dhuhr, ikamah.jummah),
     };
   },
-  update: async (data: TIkamahUpdate) =>
-    await db
+  update: async (data: TIkamahUpdate) => {
+    const updatedRow = await db
       .update(Ikamah.table)
       .set(data)
-      .where(sql`${Ikamah.table.id} = 1`),
+      .where(eq(Ikamah.table.id, 1));
+    return updatedRow.rowsAffected > 0;
+  },
 };
 
 export default IkamahServices;

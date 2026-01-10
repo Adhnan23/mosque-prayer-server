@@ -1,12 +1,13 @@
 import db from "@db";
 import { Settings, TSettingsUpdate } from "@schemas";
-import { sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 type SettingsColumn = keyof TSettingsUpdate;
 
 const SettingsServices = {
   get: async () => {
     const [result] = await db.select().from(Settings.table).limit(1);
+    if (!result) return null;
     const { id, ...rest } = result;
     return rest;
   },
@@ -20,11 +21,13 @@ const SettingsServices = {
 
     return row?.value ?? null;
   },
-  update: async (data: TSettingsUpdate) =>
-    await db
+  update: async (data: TSettingsUpdate) => {
+    const updatedRow = await db
       .update(Settings.table)
       .set(data)
-      .where(sql`${Settings.table.id} = 1`),
+      .where(eq(Settings.table.id, 1));
+    return updatedRow.rowsAffected > 0;
+  },
 };
 
 export default SettingsServices;

@@ -10,7 +10,7 @@ const PrayerTimeController = {
     query: { limit?: TLimit; format: TFormat };
   }) => {
     const results = await PrayerTimeServices.getAll(limit);
-    if (!results) throw new NotFoundError("PrayerTime not found");
+    if (results.length === 0) throw new NotFoundError("PrayerTime not found");
     return respond(
       true,
       "Prayer Time fetched successfully",
@@ -25,7 +25,7 @@ const PrayerTimeController = {
     query: { limit?: TLimit; format: TFormat };
   }) => {
     const results = await PrayerTimeServices.getMonthly(month, limit);
-    if (!results) throw new NotFoundError("PrayerTime not found");
+    if (results.length === 0) throw new NotFoundError("PrayerTime not found");
     return respond(
       true,
       "Prayer Time fetched successfully",
@@ -40,7 +40,7 @@ const PrayerTimeController = {
     query: { format: TFormat };
   }) => {
     const results = await PrayerTimeServices.get(month, day);
-    if (!results) throw new NotFoundError("PrayerTime not found");
+    if (results.length === 0) throw new NotFoundError("PrayerTime not found");
     return respond(
       true,
       "Prayer Time fetched successfully",
@@ -59,7 +59,7 @@ const PrayerTimeController = {
     if (startRange > endRange)
       return status(400, respond(false, "Invalid date range"));
     const results = await PrayerTimeServices.getInRange([sm, sd], [em, ed]);
-    if (!results) throw new NotFoundError("PrayerTime not found");
+    if (results.length === 0) throw new NotFoundError("PrayerTime not found");
     return respond(
       true,
       "Prayer Time fetched successfully",
@@ -68,7 +68,7 @@ const PrayerTimeController = {
   },
   today: async ({ query: { format } }: { query: { format: TFormat } }) => {
     const results = await PrayerTimeServices.today();
-    if (!results) throw new NotFoundError("PrayerTime not found");
+    if (results.length === 0) throw new NotFoundError("PrayerTime not found");
     return respond(
       true,
       "Prayer Time fetched successfully",
@@ -84,7 +84,7 @@ const PrayerTimeController = {
   }) => {
     const results = await PrayerTimeServices.update(month, day, body);
     if (!results) throw new NotFoundError("PrayerTime not found");
-    return respond(true, "Prayer Time Updated successfully", results);
+    return respond(true, "Prayer Time updated successfully", results);
   },
   updateByRange: async ({
     params: { sm, sd, em, ed },
@@ -103,7 +103,7 @@ const PrayerTimeController = {
       body
     );
     if (!results) throw new NotFoundError("PrayerTime not found");
-    return respond(true, "Prayer Time Updated successfully", results);
+    return respond(true, "Prayer Time updated successfully", results);
   },
 };
 

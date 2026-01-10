@@ -9,7 +9,7 @@ const NoticeController = {
       isActive === undefined
         ? await NoticeServices.get()
         : await NoticeServices.get(isActive);
-    if (!notices) throw new NotFoundError("No notices found");
+    if (notices.length === 0) throw new NotFoundError("No notices found");
     return respond(true, "Notices fetched successfully", notices);
   },
   getById: async ({ params: { id } }: { params: { id: number } }) => {
@@ -19,7 +19,7 @@ const NoticeController = {
   },
   getByCode: async ({ params: { code } }: { params: { code: string } }) => {
     const notices = await NoticeServices.getByCode(code);
-    if (!notices) throw new NotFoundError("No notices found");
+    if (notices.length === 0) throw new NotFoundError("No notices found");
     return respond(true, "Notices fetched successfully", notices);
   },
   insert: async ({ body }: { body: TNoticeInsert }) => {
@@ -46,14 +46,12 @@ const NoticeController = {
       if (start > end) return status(400, respond(false, "Invalid date range"));
     }
     const updatedNotice = await NoticeServices.update(id, body);
-    if (!updatedNotice)
-      throw new InternalServerError("Failed to update notice");
+    if (!updatedNotice) throw new NotFoundError("Notice not found");
     return respond(true, "Notice updated successfully", updatedNotice);
   },
   delete: async ({ params: { id } }: { params: { id: number } }) => {
     const deletedNotice = await NoticeServices.delete(id);
-    if (!deletedNotice)
-      throw new InternalServerError("Failed to delete notice");
+    if (!deletedNotice) throw new NotFoundError("Notice not found");
     return respond(true, "Notice deleted successfully", deletedNotice);
   },
 };

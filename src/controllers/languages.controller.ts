@@ -1,11 +1,11 @@
 import { LanguagesServices } from "@queries";
 import { respond } from "@utils";
-import { InternalServerError, NotFoundError, status } from "elysia";
+import { NotFoundError, status } from "elysia";
 
 const LanguagesController = {
   get: async () => {
     const languages = await LanguagesServices.get();
-    if (!languages) throw new NotFoundError("Languages not found");
+    if (languages.length === 0) throw new NotFoundError("Languages not found");
     return respond(true, "Languages fetched successfully", languages);
   },
   getByCode: async ({ params: { code } }: { params: { code: string } }) => {
@@ -15,7 +15,8 @@ const LanguagesController = {
   },
   insert: async ({ body }: { body: { code: string; name: string } }) => {
     const language = await LanguagesServices.insert(body);
-    if (!language) throw new InternalServerError("Language not inserted");
+    if (!language)
+      return status(400, respond(false, "Language already exists"));
     return status(
       "Created",
       respond(true, "Language inserted successfully", language)

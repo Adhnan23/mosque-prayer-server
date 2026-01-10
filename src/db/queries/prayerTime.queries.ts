@@ -62,7 +62,7 @@ const PrayerTimeServices = {
       .where(
         and(eq(PrayerTime.table.month, month), eq(PrayerTime.table.day, day))
       );
-    return updatedRow;
+    return updatedRow.rowsAffected > 0;
   },
   updateByRange: async (
     [sm, sd]: [number, number],
@@ -78,7 +78,7 @@ const PrayerTimeServices = {
       .where(
         sql`(${PrayerTime.table.month} * 100 + ${PrayerTime.table.day}) BETWEEN ${start} AND ${end}`
       );
-    return updatedRows;
+    return updatedRows.rowsAffected > 0;
   },
 };
 export default PrayerTimeServices;

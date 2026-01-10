@@ -24,22 +24,26 @@ const NoticeServices = {
     const results = await db
       .select()
       .from(Notice.table)
-      .where(eq(Notice.table.language_code, code));
+      .where(eq(Notice.table.language_code, code.toLowerCase()));
     return results;
   },
   insert: async (data: TNoticeInsert) => {
-    const [row] = await db.insert(Notice.table).values(data).returning();
-    return row;
+    const row = await db.insert(Notice.table).values(data);
+    return row.rowsAffected > 0;
   },
   update: async (id: number, data: TNoticeUpdate) => {
     const updatedRow = await db
       .update(Notice.table)
       .set(data)
       .where(eq(Notice.table.id, id));
-    return updatedRow;
+    return updatedRow.rowsAffected > 0;
   },
-  delete: async (id: number) =>
-    db.delete(Notice.table).where(eq(Notice.table.id, id)),
+  delete: async (id: number) => {
+    const deletedRow = await db
+      .delete(Notice.table)
+      .where(eq(Notice.table.id, id));
+    return deletedRow.rowsAffected > 0;
+  },
 };
 
 export default NoticeServices;

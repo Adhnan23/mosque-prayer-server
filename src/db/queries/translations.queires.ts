@@ -13,6 +13,13 @@ const TranslationsServices = {
             .where(eq(Translations.table.language_code, code));
     return results;
   },
+  getByCode: async (code: string) => {
+    const results = await db
+      .select()
+      .from(Translations.table)
+      .where(eq(Translations.table.language_code, code.toLowerCase()));
+    return results;
+  },
   getByCategory: async (code: string, category: string) => {
     const results = await db
       .select()
@@ -39,8 +46,8 @@ const TranslationsServices = {
     return result?.value;
   },
   insert: async (data: TTranslationInsert) => {
-    await db.insert(Translations.table).values(data);
-    return data;
+    const row = await db.insert(Translations.table).values(data);
+    return row.rowsAffected > 0;
   },
   update: async (
     code: string,
@@ -59,7 +66,7 @@ const TranslationsServices = {
         )
       );
 
-    return result;
+    return result.rowsAffected > 0;
   },
   delete: async (code: string, category: string, key: string) => {
     const result = await db
@@ -72,7 +79,7 @@ const TranslationsServices = {
         )
       );
 
-    return result;
+    return result.rowsAffected > 0;
   },
 };
 
