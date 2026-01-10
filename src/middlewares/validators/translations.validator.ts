@@ -21,7 +21,9 @@ const TranslationsValidator = {
         key: z.string(),
       })
       .strict(),
-    body: Translations.schema.insert,
+    body: Translations.schema.insert.pick({
+      value: true,
+    }),
   },
   update: {
     params: z

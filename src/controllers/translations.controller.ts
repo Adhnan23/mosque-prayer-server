@@ -1,5 +1,5 @@
 import { TranslationsServices } from "@queries";
-import { TTranslationInsert, TTranslationUpdate } from "@schemas";
+import { TTranslationUpdate } from "@schemas";
 import { respond } from "@utils";
 import { InternalServerError, NotFoundError } from "elysia";
 
@@ -43,7 +43,7 @@ const TranslationsController = {
     body: { value },
   }: {
     params: { code: string; category: string; key: string };
-    body: TTranslationInsert;
+    body: { value: string };
   }) => {
     const inserted = await TranslationsServices.insert({
       language_code: code,
@@ -57,16 +57,16 @@ const TranslationsController = {
   },
   update: async ({
     params: { code, category, key },
-    body: { value },
+    body,
   }: {
     params: { code: string; category: string; key: string };
-    body: { value: TTranslationUpdate };
+    body: TTranslationUpdate;
   }) => {
     const updated = await TranslationsServices.update(
       code,
       category,
       key,
-      value
+      body
     );
     if (!updated) throw new NotFoundError("Translation not found");
     return respond(true, "Translation updated successfully", updated);
