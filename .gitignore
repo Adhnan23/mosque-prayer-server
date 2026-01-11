@@ -43,3 +43,4 @@ package-lock.json
 
 
 src/db/mosque.db
+.env

@@ -6,8 +6,8 @@ import ApiRoute from "@routes";
 const app = new Elysia()
   .onError(errorHandler)
   .use(Cors)
-  .use(Static)
   .use(ApiRoute)
+  .use(Static)
   .listen(ENV.PORT);
 
 console.log(
