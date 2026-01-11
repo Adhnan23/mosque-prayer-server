@@ -1,5 +1,9 @@
 import staticPlugin from "@elysiajs/static";
 
-const Static = staticPlugin({ assets: "public", prefix: "/" })
+const Static = staticPlugin({
+  assets: "public",
+  prefix: "",
+  indexHTML: true,
+});
 
-export default Static
+export default Static;
