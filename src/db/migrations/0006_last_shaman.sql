@@ -1,0 +1,1 @@
+ALTER TABLE `settings` ADD `hijri_offset` integer DEFAULT 0 NOT NULL;

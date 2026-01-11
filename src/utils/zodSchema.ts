@@ -33,6 +33,7 @@ export const settingsColumn = z.enum([
   "language_code",
   "time_format",
   "is_ramadan",
+  "hijri_offset",
   "primary_color",
   "secondary_color",
   "accent_color",

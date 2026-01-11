@@ -43,6 +43,13 @@
       "when": 1767542676007,
       "tag": "0005_tidy_fixer",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1768110794676,
+      "tag": "0006_last_shaman",
+      "breakpoints": true
     }
   ]
 }
