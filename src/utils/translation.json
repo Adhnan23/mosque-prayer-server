@@ -1,4 +1,23 @@
 [
+
+  {
+    "language_code": "en",
+    "category": "mosque",
+    "key": "name",
+    "value": "Muhayaddeen Jumma Masjidh"
+  },
+  {
+    "language_code": "ta",
+    "category": "mosque",
+    "key": "name",
+    "value": "முகைதீன் ஜும்ஆ பள்ளி"
+  },
+  {
+    "language_code": "si",
+    "category": "mosque",
+    "key": "name",
+    "value": "මුහයද්දීන් ජුම්ආ පල්ලිය"
+  },
   {
     "language_code": "en",
     "category": "fields",

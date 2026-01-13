@@ -1,5 +1,6 @@
 import db from "@db";
 import translations from "./translation.json" assert { type: "json" };
+import prayerTimes from "./Prayer_Times.json" assert { type: "json" };
 import {
   Ikamah,
   Languages,
@@ -75,15 +76,15 @@ const countRows = async (table: any) => {
 const generatePrayerTimes = async () => {
   const rowCount = await countRows(PrayerTime.table);
   if (rowCount === 0) {
-    const rows = [];
-    const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    for (let month = 1; month <= 12; month++) {
-      for (let day = 1; day <= daysInMonth[month - 1]; day++) {
-        rows.push({ month, day, ...defaultPrayerTimes });
-      }
-    }
-    await db.insert(PrayerTime.table).values(rows);
-    console.log("Prayer Time table filled:", rows.length, "rows");
+    // const rows = [];
+    // const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    // for (let month = 1; month <= 12; month++) {
+    //   for (let day = 1; day <= daysInMonth[month - 1]; day++) {
+    //     rows.push({ month, day, ...defaultPrayerTimes });
+    //   }
+    // }
+    await db.insert(PrayerTime.table).values(prayerTimes);
+    console.log("Prayer Time table filled:", prayerTimes.length, "rows");
   }
 };
 

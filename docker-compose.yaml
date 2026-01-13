@@ -1,0 +1,15 @@
+services:
+  prayertimeapp:
+    build: .
+    volumes:
+      - db_data:/app/db      # Persist SQLite db folder
+    ports:
+      - "3000:3000"
+    environment:
+      ENVIRONMENT: production
+      DB_FILE_NAME: file:./db/mosque.db
+      PORT: 3000
+      BASE_URL: http://localhost:3000
+
+volumes:
+  db_data:

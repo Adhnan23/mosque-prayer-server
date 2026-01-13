@@ -6,7 +6,7 @@ import ApiRoute from "@routes";
 const app = new Elysia().onError(errorHandler).use(Cors);
 
 // Serve index.html at /
-app.get("/", async ({ set }) => {
+app.get("*", async ({ set }) => {
   set.headers["content-type"] = "text/html";
   return await Bun.file("public/index.html").text();
 });
