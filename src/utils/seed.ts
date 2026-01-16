@@ -21,50 +21,12 @@ const defaultPrayerTimes = {
 };
 
 const notices = [
-  // English Notices
-  {
-    language_code: "en",
-    content: "Welcome to our prayer app! Stay updated with daily prayer times.",
-    start_date: "2026-01-01",
-    end_date: "2026-12-31",
-    is_active: true,
-  },
-  {
-    language_code: "en",
-    content: "Don't forget to adjust your notifications for Ramadan.",
-    start_date: "2026-03-01",
-    end_date: "2026-04-30",
-    is_active: false,
-  },
-  {
-    language_code: "en",
-    content: "Check out new features in the settings menu.",
-    start_date: "2026-01-05",
-    end_date: "2026-06-30",
-    is_active: true,
-  },
-
-  // Tamil Notices
   {
     language_code: "ta",
     content:
       "எங்கள் பிரார்த்தனை பயன்பாட்டுக்கு வரவேற்கின்றோம்! தினசரி பிரார்த்தனை நேரங்களை புதுப்பிக்கவும்.",
     start_date: "2026-01-01",
     end_date: "2026-12-31",
-    is_active: true,
-  },
-  {
-    language_code: "ta",
-    content: "ரமலான் காலத்திற்கான அறிவிப்புகளை மாற்ற மறக்காதீர்கள்.",
-    start_date: "2026-03-01",
-    end_date: "2026-04-30",
-    is_active: false,
-  },
-  {
-    language_code: "ta",
-    content: "அமைப்புகளில் புதிய அம்சங்களைச் சரிபார்க்கவும்.",
-    start_date: "2026-01-05",
-    end_date: "2026-06-30",
     is_active: true,
   },
 ];

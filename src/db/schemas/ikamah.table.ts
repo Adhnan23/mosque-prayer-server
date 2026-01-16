@@ -8,12 +8,12 @@ export const ikamahTable = sqliteTable(
   "ikamah",
   {
     id: integer("id").primaryKey().default(1),
-    fajr: integer("fajr").notNull().default(15),
-    dhuhr: integer("dhuhr").notNull().default(15),
-    asr: integer("asr").notNull().default(15),
-    maghrib: integer("maghrib").notNull().default(5),
-    isha: integer("isha").notNull().default(15),
-    jummah: integer("jummah").notNull().default(0),
+    fajr: integer("fajr").notNull().default(30),
+    dhuhr: integer("dhuhr").notNull().default(10),
+    asr: integer("asr").notNull().default(10),
+    maghrib: integer("maghrib").notNull().default(10),
+    isha: integer("isha").notNull().default(10),
+    jummah: integer("jummah").notNull().default(10),
   },
   (table) => [
     check("single_row_check", sql`${table.id} = 1`),

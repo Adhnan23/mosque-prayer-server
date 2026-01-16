@@ -4,19 +4,19 @@
     "language_code": "en",
     "category": "mosque",
     "key": "name",
-    "value": "Muhayaddeen Jumma Masjidh"
+    "value": ""
   },
   {
     "language_code": "ta",
     "category": "mosque",
     "key": "name",
-    "value": "முகைதீன் ஜும்ஆ பள்ளி"
+    "value": ""
   },
   {
     "language_code": "si",
     "category": "mosque",
     "key": "name",
-    "value": "මුහයද්දීන් ජුම්ආ පල්ලිය"
+    "value": ""
   },
   {
     "language_code": "en",
@@ -358,7 +358,7 @@
     "language_code": "ta",
     "category": "prayer_names",
     "key": "sunrise",
-    "value": "சூரிய உதயம்"
+    "value": "உதயம்"
   },
   {
     "language_code": "ta",
@@ -376,7 +376,7 @@
     "language_code": "ta",
     "category": "prayer_names",
     "key": "maghrib",
-    "value": "மக்ரிப்"
+    "value": "மஃரிப்"
   },
   {
     "language_code": "ta",

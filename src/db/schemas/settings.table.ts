@@ -9,13 +9,13 @@ export const settingsTable = sqliteTable(
   "settings",
   {
     id: integer("id").primaryKey().default(1),
-    mosque_name: text("mosque_name").notNull().default("Masjidul Falah"),
+    mosque_name: text("mosque_name").notNull().default("Masjid Name"),
 
     language_code: text("language_code")
       .notNull()
       .references(() => languagesTable.code)
       .default("ta"),
-    time_format: integer("time_format").notNull().default(24),
+    time_format: integer("time_format").notNull().default(12),
     hijri_offset: integer("hijri_offset").notNull().default(0),
 
     is_ramadan: integer("is_ramadan", { mode: "boolean" })
