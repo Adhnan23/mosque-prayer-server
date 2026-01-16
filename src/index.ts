@@ -24,7 +24,10 @@ app.get("/vite.svg", () => Bun.file("public/vite.svg"));
 // API routes
 app.use(ApiRoute);
 
-app.listen(ENV.PORT);
+app.listen({
+  hostname: "0.0.0.0",
+  port: ENV.PORT,
+});
 
 console.log(
   `🦊 Elysia is running in ${ENV.ENVIRONMENT} mode at http://${

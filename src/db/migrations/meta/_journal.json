@@ -50,6 +50,20 @@
       "when": 1768110794676,
       "tag": "0006_last_shaman",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1768399948445,
+      "tag": "0007_pretty_blizzard",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1768445165673,
+      "tag": "0008_yummy_cargill",
+      "breakpoints": true
     }
   ]
 }

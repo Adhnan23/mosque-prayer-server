@@ -14,7 +14,7 @@ export const settingsTable = sqliteTable(
     language_code: text("language_code")
       .notNull()
       .references(() => languagesTable.code)
-      .default("en"),
+      .default("ta"),
     time_format: integer("time_format").notNull().default(24),
     hijri_offset: integer("hijri_offset").notNull().default(0),
 
@@ -22,11 +22,11 @@ export const settingsTable = sqliteTable(
       .notNull()
       .default(false),
 
-    primary_color: text("primary_color").notNull().default("#000000"),
-    secondary_color: text("secondary_color").notNull().default("#ffffff"),
-    accent_color: text("accent_color").notNull().default("#007bff"),
-    background_color: text("background_color").notNull().default("#f8f9fa"),
-    foreground_color: text("foreground_color").notNull().default("#212529"),
+    primary_color: text("primary_color").notNull().default("#ff8000"),
+    secondary_color: text("secondary_color").notNull().default("#ffff00"),
+    accent_color: text("accent_color").notNull().default("#00ff40"),
+    background_color: text("background_color").notNull().default("#000000"),
+    foreground_color: text("foreground_color").notNull().default("#ffffff"),
   },
   (table) => [
     check("settings_single_row", sql`${table.id} = 1`),
